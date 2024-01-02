@@ -44,7 +44,14 @@ void Camera::camera_enevts(float delta){
 	if (Window::pressed(GLFW_KEY_LEFT_SHIFT)){
 		position.y -= delta * speed;
 	}
+	if (Window::pressed(GLFW_KEY_Q)){
+		speed = 30.0f;
+	}
+	if (Window::pressed(GLFW_KEY_E)){
+		speed = 5.0f;
+	}
 	
+
         
 	camY += -Window::deltaY / Window::HEIGHT * 2;
 	camX += -Window::deltaX / Window::HEIGHT * 2;

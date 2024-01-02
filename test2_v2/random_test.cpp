@@ -25,9 +25,7 @@ void test_RANDOM_POS(){
     std::cout<<"min = "<<min<<"\n";
     std::cout<<"max = "<<max<<"\n";
 }
-
-int main(){
-    srand(time(NULL));
+void test_RANDOM_SIZE(){
     float r;
     std::cout<<"RAND_MAX = "<<RAND_MAX<<"\n";
     float min = 1.0f;
@@ -45,8 +43,29 @@ int main(){
     }
     std::cout<<"min = "<<min<<"\n";
     std::cout<<"max = "<<max<<"\n";
+}
+
+
+int main(){
+    srand(time(NULL));
     
-    
+    int s = 30;
+    int p = -15;
+    int r;
+    int min = s;
+    int max = -999;
+    for(int i = 0; i < 2000; ++i){
+        r = p + (rand() % (s+1));
+        if(r < min){
+            min = r;
+        }
+        if(r > max){
+            max = r;
+        }
+        
+    }
+    std::cout<<"min = "<<min<<"\n";
+    std::cout<<"max = "<<max<<"\n";
 }
 
 
