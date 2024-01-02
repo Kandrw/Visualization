@@ -21,7 +21,7 @@ void Camera::rotate(float x, float y, float z){
 
 	updateVectors();
 }
-void Camera::camera_enevts(float delta){
+void Camera::camera_events(float delta){
 	if(Window::pressed(GLFW_KEY_W)){
         //output<<"W\n";
         position += front * delta * speed;

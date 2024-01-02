@@ -21,6 +21,6 @@ public:
 	void rotate(float x, float y, float z);
 	glm::mat4 getProjection();
 	glm::mat4 getView();
-	void camera_enevts(float delta);
+	void camera_events(float delta);
 
 };
