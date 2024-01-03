@@ -18,7 +18,7 @@
     buffer[index+2] = z;\
     index += 3;
 GeometryCube::GeometryCube(float *pos_size_rgb){
-    output<<"[GeometryCube initialization...\n";
+    print_log(CONSOLE, "[GeometryCube initialization...\n");
     memcpy(data_repn.pos_size_rgb, pos_size_rgb, 9 * sizeof(float));
     data_repn.size_vertices = 3 * 3 * 2 * 6;
     data_repn.size_norm = data_repn.size_vertices;
@@ -30,7 +30,7 @@ GeometryCube::GeometryCube(float *pos_size_rgb){
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     render();
-    output<<"[GeometryCube initialization\n";
+    print_log(CONSOLE, "[GeometryCube initialization\n");
 }
 GeometryCube::~GeometryCube(){
     delete[] data_repn.buffer;

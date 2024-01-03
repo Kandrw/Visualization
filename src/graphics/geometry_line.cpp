@@ -18,7 +18,7 @@
 
 GeometryLine::GeometryLine(glm::vec3 pos, float size, glm::vec3 norm){
     
-    output<<"[GeometryLine initialization...\n";
+    print_log(CONSOLE, "[GeometryLine initialization...]\n");
     memset((void*)&data_repn, 0, sizeof(data_repn));
     //data_repn.pos = pos;
     data_repn.model = glm::mat4(1.0f);
@@ -29,14 +29,14 @@ GeometryLine::GeometryLine(glm::vec3 pos, float size, glm::vec3 norm){
     norm = norm * size;
     memcpy(data_repn.buffer + 3, (void*)&norm, 3 * sizeof(float));
     for(int i = 0; i < 6; ++i){
-        output<<data_repn.buffer[i]<<"  ";
+       print_log(CONSOLE, "%f  ", data_repn.buffer[i]);
     }
-    output<<"\n";
+    print_log(CONSOLE, "\n");
     load_shader();
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     render();
-    output<<"[GeometryLine initialization\n";
+    print_log(CONSOLE, "[GeometryLine initialization]\n");
 }
 GeometryLine::~GeometryLine(){
     delete[] data_repn.buffer;

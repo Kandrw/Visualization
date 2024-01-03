@@ -11,7 +11,7 @@
 int *read_bin_type_int(std::string fname, int N){
     FILE *filew = fopen(fname.c_str(), "rb");
     if(!filew){
-        output<<"[Error load] not found - "<<fname<<"\n";
+        print_log(CONSOLE, "[Error load] not found - %s\n", fname);
         return nullptr;
     }
     int *array = new int[N];
@@ -19,7 +19,7 @@ int *read_bin_type_int(std::string fname, int N){
     if(size != N){
         delete[] array;
         fclose(filew);
-        output<<"[Error read] reading data<"<<fname<<"> error: N = "<<N<<", read(data) = "<<size<<"\n";
+        print_log(CONSOLE, "[Error read] reading data <%s> error: N = %d, read(data) = %d\n", fname.c_str(), N, size);
         return nullptr;
     }
     fclose(filew);
@@ -29,7 +29,7 @@ int *read_bin_type_int(std::string fname, int N){
 double *read_bin_type_double(std::string fname, int N){
     FILE *filew = fopen(fname.c_str(), "rb");
     if(!filew){
-        output<<"[Error load] not found - "<<fname<<"\n";
+        print_log(CONSOLE, "[Error load] not found - %s\n", fname.c_str());
         return nullptr;
     }
     double *array = new double[N];
@@ -37,7 +37,8 @@ double *read_bin_type_double(std::string fname, int N){
     if(size != N){
         delete[] array;
         fclose(filew);
-        output<<"[Error read] reading data<"<<fname<<"> error: N = "<<N<<", read(data) = "<<size<<"\n";
+        //output<<"[Error read] reading data<"<<fname<<"> error: N = "<<N<<", read(data) = "<<size<<"\n";
+        print_log(CONSOLE, "[Error read] reading data <%s> error: N = %d, read(data) = %d\n", fname.c_str(), N, size);
         return nullptr;
     }
     fclose(filew);
@@ -46,7 +47,8 @@ double *read_bin_type_double(std::string fname, int N){
 float *read_bin_type_float(std::string fname, int N){
     FILE *filew = fopen(fname.c_str(), "rb");
     if(!filew){
-        output<<"[Error load] not found - "<<fname<<"\n";
+        //output<<"[Error load] not found - "<<fname<<"\n";
+        print_log(CONSOLE, "[Error load] not found - %s\n", fname.c_str());
         return nullptr;
     }
     float *array = new float[N];
@@ -54,7 +56,8 @@ float *read_bin_type_float(std::string fname, int N){
     if(size != N){
         delete[] array;
         fclose(filew);
-        output<<"[Error read] reading data<"<<fname<<"> error: N = "<<N<<", read(data) = "<<size<<"\n";
+        //output<<"[Error read] reading data<"<<fname<<"> error: N = "<<N<<", read(data) = "<<size<<"\n";
+        print_log(CONSOLE, "[Error read] reading data <%s> error: N = %d, read(data) = %d\n", fname.c_str(), N, size);
         return nullptr;
     }
     fclose(filew);

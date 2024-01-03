@@ -24,7 +24,7 @@ GeometryCubeT3::GeometryCubeT3(float *pos_size_rgb, int id){
     memset((void*)&data_repn, 0, sizeof(data_repn));
     
     data_repn.id = id;
-    output<<"[GeometryCubeT3 initialization...\n";
+    print_log(CONSOLE, "[GeometryCubeT3 initialization...\n");
     memcpy((void*)data_repn.pos_size_rgb, (void*)pos_size_rgb, 9 * sizeof(float));
     data_repn.size_vertices = 3 * 3 * 2 * 6;
     data_repn.size_norm = data_repn.size_vertices;
@@ -46,9 +46,9 @@ GeometryCubeT3::GeometryCubeT3(float *pos_size_rgb, int id){
     render();
 
     //line = new GeometryLine(glm::vec3(1.f, 1.f, 0.f), 10.f, glm::vec3(0.f, 1.f, 0.f));
-    line = new GeometryLine(glm::vec3(0.f, 0.f, 0.f), 10.f, data_repn.direction);
+    line = new GeometryLine(glm::vec3(0.f, 1.f, 0.f), 10.f, data_repn.direction);
     
-    output<<"[GeometryCubeT3 initialization\n";
+    print_log(CONSOLE, "[GeometryCubeT3 initialization\n");
 }
 GeometryCubeT3::~GeometryCubeT3(){
     delete[] data_repn.buffer;
@@ -169,11 +169,11 @@ void GeometryCubeT3::generate_vertices_normales(){
     VERTEX(buffer, index, x + sizex, y        , z + sizez); VERTEX(buffer, index,  1.f,  0.f,  0.f);
     VERTEX(buffer, index, x + sizex, y + sizey, z        ); VERTEX(buffer, index,  1.f,  0.f,  0.f);
     VERTEX(buffer, index, x + sizex, y + sizey, z + sizez); VERTEX(buffer, index,  1.f,  0.f,  0.f);
-    output<<"index = "<<index<<"\n";
+    print_log(CONSOLE, "index = %d\n", index);
     for(int i = 0; i < data_repn.size_buffer; ++i){
-        output<<buffer[i]<<" ";
+        print_log(CONSOLE, "%f ", buffer[i]);
     }
-    output<<"\n";
+    print_log(CONSOLE, "\n");
 }
 
 void GeometryCubeT3::rotate(float angle, glm::vec3 xyz){

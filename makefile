@@ -11,8 +11,9 @@ CC := g++
 all: $(BIN) start
 
 $(BIN): $(OBJ)
-	g++ -o Program $(BUILD_DIRECT)/*.o -lglfw3 -lglew32 -lopengl32 -lspng -lgdi32 -Wl,-Bstatic -lz -static-libgcc -static-libstdc++ -lm -g -Wall
-
+#	g++ -o Program $(BUILD_DIRECT)/*.o -lglfw3 -lglew32 -lopengl32 -lspng -lgdi32 -Wl,-Bstatic -lz -static-libgcc -static-libstdc++ -lm -g -Wall
+	g++ -v -o Program $(BUILD_DIRECT)/*.o -lopengl32 -lglew32 -lfreeglut -lglu32 -lglfw3 -lglew32 -lopengl32 -lgdi32 -Wl,-Bstatic -static-libgcc -static-libstdc++ -lm -g -Wall
+	
 %.o: %.cpp
 	$(CC) $< -c -o $(BUILD_DIRECT)/$(notdir $@)
 start:

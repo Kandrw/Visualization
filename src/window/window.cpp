@@ -36,7 +36,7 @@ int Window::Initialize(int w, int h, const char *title){
     window = glfwCreateWindow(WIDTH, HEIGHT, title, nullptr, nullptr);
 
     if(window == nullptr){
-        output << "Failed create window\n";
+        print_log(CONSOLE, "Failed create window\n");
         glfwTerminate();
 		    return -1;
     }
@@ -47,7 +47,7 @@ int Window::Initialize(int w, int h, const char *title){
     glfwSetCursorPosCallback(window, cursor_position);
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK){
-		    output << "Failed to initialize GLEW\n";
+		    print_log(CONSOLE, "Failed to initialize GLEW\n");
 		    return -1;
 	}
     glViewport(0, 0, WIDTH, HEIGHT);
@@ -59,7 +59,7 @@ int Window::Initialize(int w, int h, const char *title){
 void Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode){
     
     if(key >= COUNT_KEYS){
-        output <<"Error: key > count_key\n";
+        print_log(CONSOLE, "Error: key > count_key\n");
     }
 
     else if(action == GLFW_PRESS){
@@ -89,7 +89,7 @@ void Window::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 bool Window::pressed(int key){
     if(key < 0 || key > COUNT_KEYS){
-        output <<"Not found key: "<<key<<"\n";
+        print_log(CONSOLE, "Not found key: %d\n", key);
         return false;
     }
     return keys[key];

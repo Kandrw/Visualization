@@ -32,8 +32,10 @@
 int main(int argc, char *argv[]){
     srand(time(NULL));
     
-    Window::Initialize(1000, 1000, "Visualization_3.1"); 
-    output<<"verson:  "<<glGetString(GL_VERSION)<<"\n";
+    Window::Initialize(1000, 1000, "Visualization_3.3"); 
+    init_log();
+
+    //output<<"verson:  "<<glGetString(GL_VERSION)<<"\n";
     //glClearColor(0.6f,0.62f,0.65f,1);
     //Вкл буфер глубины
     glEnable(GL_DEPTH_TEST);
@@ -60,8 +62,8 @@ int main(int argc, char *argv[]){
     float pos_size_rgb4[] = {-8.f, 0.f, -2.f, 4.0f, 2.0f, 4.f, 0.1f, 0.0f, 0.8f};
     GeometryCubeT3 cube4(pos_size_rgb4, 34);
 
-    output<<"[OBJECTS INIT]\n";
-
+    //output<<;
+    print_log(CONSOLE, "[OBJECTS INIT]\n");
     //Последняя задача: линия указывающая направление
     float lastTime = glfwGetTime();
 	float delta = 0.0f;
@@ -79,7 +81,7 @@ int main(int argc, char *argv[]){
 		delta = currentTime - lastTime;
 		lastTime = currentTime;
         if(Window::clicked(GLFW_MOUSE_BUTTON_LEFT)){
-            output<<"MOUSE_BUTTON_LEFT\n";
+           print_log(CONSOLE,"MOUSE_BUTTON_LEFT\n");
         }
         if(Window::pressed(GLFW_KEY_SPACE)){
             Window::payse = !Window::payse;
@@ -88,12 +90,12 @@ int main(int argc, char *argv[]){
             Window::setShouldClose(true);
         }
         if(Window::jpressed(GLFW_KEY_TAB)){
-            output<<"TAB\n";
+            print_log(CONSOLE, "TAB\n");
             con_tab = !con_tab;
             Window::setCursorMode(con_tab ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
         }
         if(Window::jpressed(GLFW_KEY_E)){
-            output<<"E\n";
+            print_log(CONSOLE, "E\n");
         }
         if(con_tab){
             camera.camera_events(delta);
@@ -180,8 +182,7 @@ int main(int argc, char *argv[]){
         Sleep(30);
         
     }
-    output.setColorStream('0', '7');
-    output<<"End program\n";
+    print_log(CONSOLE, "End program\n");
     glfwTerminate();
     
     return 0;

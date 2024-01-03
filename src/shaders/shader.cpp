@@ -44,8 +44,8 @@ Shader *load_Shader(std::string fname_fragment, std::string fname_vertex){
 	glGetProgramiv(id, GL_LINK_STATUS, &success);
 	if (!success){
 		glGetProgramInfoLog(id, SIZE_LOG_BUFFER, nullptr, infoLog);
-		output << "[Error] (SHADER::PROGRAM) linking failed, shaders: " <<fname_fragment<<", "<<fname_vertex<<"\n";
-		output << infoLog << "\n";
+		print_log(CONSOLE, "[Error] (SHADER::PROGRAM) linking failed, shaders: %s, %s\n", fname_fragment.c_str(), fname_vertex.c_str());
+		print_log(CONSOLE, "%s\n", infoLog);
 
 		glDeleteShader(vertex);
 		glDeleteShader(fragment);
@@ -53,7 +53,7 @@ Shader *load_Shader(std::string fname_fragment, std::string fname_vertex){
 	}
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
-    output<<"[Shader]: shader load - "<<id<<"\n";
+    print_log(CONSOLE, "[Shader]: shader load - %d\n", (int)id);
     return new Shader(id);
 }
 
@@ -88,7 +88,7 @@ int compileShader(std::string fname_shader, GLint type_shader, GLuint *shader_re
     GLuint shader;
     shader_code = load_code(fname_shader.c_str());
     if(!shader_code){
-        output << "[Error]: file shader not found: "<<fname_shader<<"\n";
+        print_log(CONSOLE, "[Error]: file shader not found: %s\n", fname_shader.c_str());
         return -1;
     }
     GLint success;
@@ -99,8 +99,8 @@ int compileShader(std::string fname_shader, GLint type_shader, GLuint *shader_re
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	if (!success){
 		glGetShaderInfoLog(shader, SIZE_LOG_BUFFER, nullptr, infoLog);
-		output << "[Error]: compilation failed: "<<fname_shader<<"\n";
-		output << infoLog << "\n";
+		print_log(CONSOLE, "[Error]: compilation failed: %s\n", fname_shader.c_str());
+		print_log(CONSOLE, "%s\n", infoLog);
 		return -1;
 	}
     *shader_result = shader;

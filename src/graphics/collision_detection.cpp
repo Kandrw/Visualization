@@ -10,7 +10,7 @@
 
 
 Collision_detection::Collision_detection(){
-    output<<"[INIT Collision_detection]\n";
+    print_log(CONSOLE, "[INIT Collision_detection]\n");
 
 }
 

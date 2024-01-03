@@ -18,7 +18,7 @@
     buffer[index+2] = z;\
     index += 3;
 GeometryCubeT2::GeometryCubeT2(float *pos_size_rgb){
-    output<<"[GeometryCube initialization...\n";
+    print_log(CONSOLE, "[GeometryCube initialization...\n");
     memcpy(data_repn.pos_size_rgb, pos_size_rgb, 9 * sizeof(float));
     data_repn.size_vertices = 3 * 3 * 2 * 6;
     data_repn.size_norm = data_repn.size_vertices;
@@ -31,7 +31,7 @@ GeometryCubeT2::GeometryCubeT2(float *pos_size_rgb){
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     render();
-    output<<"[GeometryCube initialization\n";
+    print_log(CONSOLE, "[GeometryCube initialization\n");
 }
 GeometryCubeT2::~GeometryCubeT2(){
     delete[] data_repn.buffer;
@@ -136,11 +136,11 @@ void GeometryCubeT2::generate_vertices(){
     VERTEX(buffer, index, x + sizex, y        , z + sizez); VERTEX(buffer, index,  1.f,  0.f,  0.f);
     VERTEX(buffer, index, x + sizex, y + sizey, z        ); VERTEX(buffer, index,  1.f,  0.f,  0.f);
     VERTEX(buffer, index, x + sizex, y + sizey, z + sizez); VERTEX(buffer, index,  1.f,  0.f,  0.f);
-    output<<"index = "<<index<<"\n";
+    print_log(CONSOLE, "index = %d\n", index);
     for(int i = 0; i < data_repn.size_buffer; ++i){
-        output<<buffer[i]<<" ";
+        print_log(CONSOLE, "%f ", buffer[i]);
     }
-    output<<"\n";
+    print_log(CONSOLE, "\n");
 }
 void GeometryCubeT2::generate_normales(){
     float *buffer = data_repn.buffer + data_repn.size_vertices;
@@ -188,11 +188,11 @@ void GeometryCubeT2::generate_normales(){
     1.0f,  0.0f,  0.0f
     };
     memcpy(buffer, normales, sizeof(normales));
-    output<<"size norm = "<<sizeof(normales) / sizeof(float)<<"\n";
+    print_log(CONSOLE, "size norm = %d", sizeof(normales) / sizeof(float));
     for(int i = 0; i < data_repn.size_norm; ++i){
-        output<<buffer[i]<<" ";
+        print_log(CONSOLE, "%f ", buffer[i]);
     }
-    output<<"\n";
+    print_log(CONSOLE, "\n");
 
 }
 
